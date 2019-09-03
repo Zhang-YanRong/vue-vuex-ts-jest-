@@ -1,4 +1,5 @@
 import { shallowMount, createLocalVue } from '@vue/test-utils'
+import Vue from 'vue'
 import detail from '@/views/heroDetail.vue'
 import Vuex from 'vuex'
 
@@ -85,4 +86,61 @@ describe('detail.vue', () => {
         expect($router.push).toHaveBeenCalled();
     })
 
+    it('computed-getData-test', () => {
+        const wrapper = shallowMount(detail, {
+            store,
+            localVue,
+            mocks: { $router, $route }
+        })
+        const vm: any = wrapper.vm
+        const arr = vm.getData
+        expect(arr.id).toBe(1)
+        expect(getters.getData).toHaveBeenCalledTimes(1)
+    })
+})
+
+describe('detail.vue', () => {
+    let $router: any;
+    let $route: any;
+    let getters: any;
+    let store: any;
+    it('computed-getData-从store获取null', () => {
+        getters = {
+            getData: jest.fn(() => {
+                return null
+            })
+        }
+        store = new Vuex.Store({
+            state: {
+                data: [],
+                message: []
+            },
+            getters,
+        })
+
+        $router = {
+            go: jest.fn(() => {
+                return -1
+            }),
+            push: jest.fn()
+        }
+
+
+        $route = {
+            path: '/heroDetail/:id',
+            params: {
+                id: 1
+            }
+        }
+
+        const wrapper = shallowMount(detail, {
+            store,
+            localVue,
+            mocks: { $router, $route }
+        })
+        const vm: any = wrapper.vm
+        const arr = vm.getData
+        expect(JSON.stringify(arr)).toBe("{}")
+        expect(getters.getData).toHaveBeenCalledTimes(1)
+    })
 })

@@ -93,6 +93,17 @@ describe('heroes.vue', () => {
         const vm: any = wrapper.vm
         vm.goDetail.call(vm, 1)
         expect(vm.$router[1].path).toBe("/heroDetail/1");
+    })
 
+    it('computed-datas-test', () => {
+        const wrapper = shallowMount(heroes, {
+            store,
+            localVue,
+            mocks: { $router }
+        })
+        const vm: any = wrapper.vm
+        const arr = vm.datas
+        expect(arr.length).toBe(1)
+        expect(getters.getData).toHaveBeenCalledTimes(1)
     })
 })

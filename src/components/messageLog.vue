@@ -17,18 +17,6 @@ export default class message extends Vue {
     return this.$store.getters.getMessage;
   }
 
-  addPeople() {
-    this.$store.commit("ADD_HERO_ACTION", {
-      data: {}
-    });
-  }
-
-  deleteHrro(i: number) {
-    this.$store.commit("DELETE_HERO", {
-      index: i
-    });
-  }
-
   clear() {
     this.$store.commit("CLEAR_MESSAGE");
   }

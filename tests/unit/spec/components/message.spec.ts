@@ -19,9 +19,7 @@ describe('message.vue', () => {
         }
 
         getters = {
-            getMessage: jest.fn(() => {
-
-            })
+            getMessage: jest.fn()
         }
 
         store = new Vuex.Store({
@@ -30,7 +28,7 @@ describe('message.vue', () => {
                     name: 'A',
                     id: 0
                 }],
-                message: []
+                message: ['test']
             },
             mutations,
             getters,
@@ -46,5 +44,27 @@ describe('message.vue', () => {
             mocks: { $router }
         })
         expect(wrapper.contains('div')).toBe(true)
+    })
+
+    it('clear-test', () => {
+        const wrapper = shallowMount(message, {
+            store,
+            localVue,
+            mocks: { $router }
+        })
+        const vm: any = wrapper.vm
+        vm.clear.call(vm)
+        expect(mutations.CLEAR_MESSAGE).toHaveBeenCalledTimes(1)
+    })
+
+    it('getMessage-test', () => {
+        const wrapper = shallowMount(message, {
+            store,
+            localVue,
+            mocks: { $router }
+        })
+        const vm: any = wrapper.vm
+        const arr = vm.messages
+        expect(getters.getMessage).toHaveBeenCalledTimes(1)
     })
 })

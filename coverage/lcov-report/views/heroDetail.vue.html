@@ -20,28 +20,28 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">76.92% </span>
+        <span class="strong">100% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>10/13</span>
+        <span class='fraction'>13/13</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
         <span class="quiet">Branches</span>
-        <span class='fraction'>0/0</span>
+        <span class='fraction'>4/4</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">66.67% </span>
+        <span class="strong">100% </span>
         <span class="quiet">Functions</span>
-        <span class='fraction'>4/6</span>
+        <span class='fraction'>6/6</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">75% </span>
+        <span class="strong">100% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>9/12</span>
+        <span class='fraction'>12/12</span>
       </div>
     </div>
   </div>
-  <div class='status-line medium'></div>
+  <div class='status-line high'></div>
 <pre><table class="coverage">
 <tr><td class="line-count quiet">1
 2
@@ -117,7 +117,6 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -125,25 +124,26 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">5x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">13x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">8x</span>
+<span class="cline-any cline-yes">9x</span>
+<span class="cline-any cline-yes">14x</span>
+<span class="cline-any cline-yes">7x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -165,15 +165,14 @@
       &lt;span&gt;name:&lt;/span&gt;
     &lt;/p&gt;
     &lt;input type="text" class="input" v-model="curPeople.name" /&gt;
-    &lt;button @click="goback"&gt;goback&lt;/button&gt;
-    &lt;button @click="save"&gt;save&lt;/button&gt;
+    &lt;button @click="goBack"&gt;goback&lt;/button&gt;
+    &lt;button @click="save(curPeople)"&gt;save&lt;/button&gt;
     &lt;messageLog /&gt;
   &lt;/div&gt;
 &lt;/template&gt;
 &nbsp;
 &lt;script lang="ts"&gt;
 import { Component, Vue } from "vue-property-decorator";
-import store from "@/store/index";
 import messageLog from "@/components/messageLog.vue";
 &nbsp;
 @Component({
@@ -185,18 +184,19 @@ export default class heroDetail extends Vue {
   curPeople: object = {};
 &nbsp;
   private get getData(): any {
-    let arr = JSON.parse(JSON.stringify(store.getters.getData));
+    const arr: object[] = this.$store.getters.getData || [];
+    if (arr.length === 0) return this.curPeople;
     this.curPeople = arr.filter((x: any) =&gt; x.id == this.$route.params.id)[0];
     return this.curPeople;
   }
 &nbsp;
-<span class="fstat-no" title="function not covered" >  goback() {</span>
-<span class="cstat-no" title="statement not covered" >    this.$router.go(-1);</span>
+  public goBack() {
+    this.$router.go(-1);
   }
 &nbsp;
-<span class="fstat-no" title="function not covered" >  save() {</span>
-<span class="cstat-no" title="statement not covered" >    this.$store.commit("EDICT_HERO", this.curPeople);</span>
-<span class="cstat-no" title="statement not covered" >    this.$router.push("/heroes");</span>
+  public save(curPeople: object) {
+    this.$store.commit("EDICT_HERO", curPeople);
+    this.$router.push({ path: "/heroes" });
   }
 &nbsp;
   mounted() {
@@ -220,7 +220,7 @@ span {
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Mon Sep 02 2019 15:47:43 GMT+0800 (GMT+08:00)
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Tue Sep 03 2019 18:26:29 GMT+0800 (GMT+08:00)
 </div>
 </div>
 <script src="..\prettify.js"></script>

@@ -25,9 +25,9 @@ export default class heroDetail extends Vue {
   curPeople: object = {};
 
   private get getData(): any {
-    this.curPeople = this.$store.getters.getData.filter(
-      (x: any) => x.id == this.$route.params.id
-    )[0];
+    const arr: object[] = this.$store.getters.getData || [];
+    if (arr.length === 0) return this.curPeople;
+    this.curPeople = arr.filter((x: any) => x.id == this.$route.params.id)[0];
     return this.curPeople;
   }
 

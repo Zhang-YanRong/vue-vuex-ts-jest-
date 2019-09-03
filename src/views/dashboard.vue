@@ -40,6 +40,7 @@ export default class dashboard extends Vue {
   private searchData?: string = "";
   private throttle!: number;
   private searcResult?: object[] = [];
+  private testData: number = 123;
 
   @Watch("searchData", { immediate: true, deep: true })
   onSearchDataChange(val: string, oldVal: string) {
@@ -93,6 +94,9 @@ export default class dashboard extends Vue {
   }
 
   mounted() {
+    setTimeout(() => {
+      this.testData = 888;
+    }, 1000);
     this.$nextTick(function() {
       this.$store.commit("ADD_MESSAGE", "fetched heroes");
     });

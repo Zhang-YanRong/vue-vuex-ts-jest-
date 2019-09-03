@@ -1,6 +1,7 @@
 import { shallowMount, createLocalVue } from '@vue/test-utils'
 import dashboard from '@/views/dashboard.vue'
 import Vuex from 'vuex'
+import Vue from 'vue'
 
 const localVue = createLocalVue()
 localVue.use(Vuex)
@@ -98,18 +99,31 @@ describe('dashboard.vue', () => {
         })
         const vm: any = wrapper.vm
         const search = jest.fn()
-        vm.createThrottle.call(wrapper.vm, '1', '1', search)
-        // console.log(vm.createThrottle)
-        // console.log(search.mock.calls)
-        // expect(search).toBeCalled();
-        expect(vm.createThrottle()).toBeGreaterThan(0);
-        expect(vm.createThrottle()).toBeTruthy();
-        // expect(search()).toBeCalledTimes(1);
-        // expect(search).toBeCalledWith(expect.anything());
-        // expect(search.mock.calls[0][0]).toBe(0);//确保被调用一次 这里是0
-        // expect(vm.search).toBeCalledWith(expect.anything()) //确保调用回调
 
+        jest.useFakeTimers();
+        vm.createThrottle.call(wrapper.vm, '1', '1', search)
+        jest.advanceTimersByTime(1000);
+        expect(setTimeout).toHaveBeenCalledTimes(1)
+        expect(search).toHaveBeenCalledTimes(1)
+        expect(setTimeout).toHaveBeenLastCalledWith(expect.any(Function), 1000);
     })
+
+
+    it('dashboard-methods-createThrottle', () => {
+        const wrapper = shallowMount(dashboard, {
+            store,
+            localVue,
+            mocks: { $router }
+        })
+        const vm: any = wrapper.vm
+        const search = jest.fn()
+        jest.useFakeTimers();
+        vm.createThrottle.call(wrapper.vm, '2', '1', search)
+        jest.advanceTimersByTime(1000);
+        expect(search).toHaveBeenCalledTimes(0)
+        expect(setTimeout).toHaveBeenCalledTimes(1)
+    })
+
 
     it('test-watch-searchData', () => {
         const wrapper = shallowMount(dashboard, {
@@ -123,26 +137,179 @@ describe('dashboard.vue', () => {
         expect(vm.searchData).toBe('1')
 
     })
+
+    it('nextTick测试', done => {
+        const wrapper = shallowMount(dashboard, {
+            store,
+            localVue,
+            mocks: { $router }
+        })
+        const vm: any = wrapper.vm
+        jest.useFakeTimers();
+        jest.advanceTimersByTime(1000);
+        vm.$nextTick(() => {
+            expect(vm.datas.length).toBeGreaterThan(-1)
+            expect(vm.testData).toBe(888)
+            done()
+        })
+    })
+
+    it('will catch the error using a promise', () => {
+        const wrapper = shallowMount(dashboard, {
+            store,
+            localVue,
+            mocks: { $router }
+        })
+        const vm: any = wrapper.vm
+        jest.useFakeTimers();
+        jest.advanceTimersByTime(1000);
+        return vm.$nextTick().then(function () {
+            expect(vm.datas.length).toBeGreaterThan(-1)
+            expect(vm.testData).toBe(888)
+        })
+    })
 })
 
 describe('dashboard-computed-test', () => {
     let getters;
     let store;
-    it('dashboard-datas', () => {
+    it('dashboard-datas-大于0小于5', () => {
+        getters = {
+            getData: jest.fn(
+                () => {
+                    return [{
+                        name: 'A',
+                        id: 0
+                    }, {
+                        name: 'B',
+                        id: 1
+                    }]
+                }
+            )
+        }
+
         store = new Vuex.Store({
             state: {
-                data: [{
-                    name: 'A',
-                    id: 0
-                }],
-                message: []
-            }
+                data: [],
+                message: [],
+            },
+            getters,
+
         })
 
         const wrapper = shallowMount(dashboard, {
             store,
             localVue
         })
-        // expect(store.getters).toHaveBeenCalled()
+        const vm: any = wrapper.vm
+        const arr = vm.datas
+        expect(arr.length).toBe(1)
+        expect(getters.getData).toHaveBeenCalledTimes(1)
+    })
+
+    it('dashboard-datas-等于0', () => {
+        getters = {
+            getData: jest.fn(
+                () => {
+                    return [{
+                        name: 'A',
+                        id: 0
+                    }]
+                }
+            )
+        }
+
+        store = new Vuex.Store({
+            state: {
+                data: [],
+                message: [],
+            },
+            getters,
+
+        })
+
+        const wrapper = shallowMount(dashboard, {
+            store,
+            localVue
+        })
+        const vm: any = wrapper.vm
+        const arr = vm.datas
+        expect(arr.length).toBe(0)
+        expect(getters.getData).toHaveBeenCalledTimes(1)
+    })
+
+    it('dashboard-datas-大于5', () => {
+        getters = {
+            getData: jest.fn(
+                () => {
+                    return [{
+                        name: 'A',
+                        id: 0
+                    },
+                    {
+                        name: 'B',
+                        id: 1
+                    },
+                    {
+                        name: 'C',
+                        id: 2
+                    },
+                    {
+                        name: 'D',
+                        id: 3
+                    },
+                    {
+                        name: 'E',
+                        id: 4
+                    }]
+                }
+            )
+        }
+
+        store = new Vuex.Store({
+            state: {
+                data: [],
+                message: [],
+            },
+            getters,
+
+        })
+
+        const wrapper = shallowMount(dashboard, {
+            store,
+            localVue
+        })
+        const vm: any = wrapper.vm
+        const arr = vm.datas
+        expect(arr.length).toBe(4)
+        expect(getters.getData).toHaveBeenCalledTimes(1)
+    })
+
+    it('dashboard-datas-大于5', () => {
+        getters = {
+            getData: jest.fn(
+                () => {
+                    return null
+                }
+            )
+        }
+
+        store = new Vuex.Store({
+            state: {
+                data: [],
+                message: [],
+            },
+            getters,
+
+        })
+
+        const wrapper = shallowMount(dashboard, {
+            store,
+            localVue
+        })
+        const vm: any = wrapper.vm
+        const arr = vm.datas
+        expect(arr.length).toBe(0)
+        expect(getters.getData).toHaveBeenCalledTimes(1)
     })
 })
