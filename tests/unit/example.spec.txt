@@ -1,0 +1,292 @@
+import { shallowMount, mount, createLocalVue } from '@vue/test-utils';
+import Vue from 'vue';
+import dashboard from '@/views/dashboard.vue';
+import ChildComponent from '@/components/ChildComponent.vue'
+/* eslint-disable */
+
+describe('dashboard.vue', () => {
+  // 现在挂载组件，你便得到了这个包裹器
+  const wrapper1 = mount(dashboard)
+
+  // 你可以通过 `wrapper.vm` 访问实际的 Vue 实例
+  const vm: any = wrapper1.vm
+
+  // it('renders props.msg when passed', () => {
+  //   const msg = 'abf';
+  //   const wrapper = shallowMount(dashboard, {
+  //     propsData: { msg },
+  //   });
+  //   expect(wrapper.text()).toMatch(msg);
+  // });
+
+  // it('renders the correct markup', () => {
+  //   expect(wrapper1.html()).toContain('<span class="count">0</span>')
+  // })
+
+  //  // 也便于检查已存在的元素
+  //  it('has a button', () => {
+  //   expect(wrapper1.contains('button')).toBe(true)
+  // })
+
+  // ---------------已解决--------------
+  //点击事件
+  // it('button click should increment the count', () => {
+  //   expect(vm.count).toBe(0)
+  //   const button = wrapper1.find('button')
+  //   button.trigger('click')
+  //   expect(vm.count).toBe(1)
+  // })
+
+  // it("displays 'Emitted!' when custom event is emitted", () => {
+  // let emitted:boolean = true
+  // const wrapper = shallowMount(dashboard, {
+  //   propsData: { emitted }
+  // })
+
+  // wrapper.find(ChildComponent).vm.$emit('custom')
+  // expect(wrapper.vm.emitted:any).toBe(!wrapper.vm.emitted)
+
+  //直接修改props
+  // const wrapper = shallowMount(dashboard)
+  // wrapper.setProps ({ emitted: false })
+
+  // })
+
+
+  //点击事件
+  // describe('Click event', () => {
+  //   it('Click on yes button calls our method with argument "yes"', () => {
+  //     const msg = 'abf';
+  //     const wrapper = mount(dashboard, {
+  //       propsData: {
+  //         msg 
+  //       }
+  //     })
+  //     wrapper.find('child-component').trigger('click')
+  //     console.log('成功测试点击事件')
+  //   })
+  // })
+
+  // test('renders props.msg when passed', () => {
+  //   const msg = 'new message'
+  //   const wrapper = shallowMount(dashboard, {
+  //     propsData: { msg }
+  //   })
+  //   expect(wrapper.text()).toMatch(msg)
+
+  //   //检查对象的值toEqual(递归检查对象或数组的每个字段)
+  //   interface Data {
+  //     [key: string]: number;
+  //   }
+  //   const data:Data = {one: 1};
+  //   data['two'] = 2;
+  //   expect(data).toEqual({one: 1, two: 2});
+  // })
+
+  //测试匹配器的反面：
+  // test('adding positive numbers is not zero', () => {
+  //   for (let a = 1; a < 10; a++) {
+  //     for (let b = 1; b < 10; b++) {
+  //       expect(a + b).not.toBe(0);
+  //     }
+  //   }
+  // });
+
+  // toBeNull 只匹配 null
+  // toBeUndefined 只匹配 undefined
+  // toBeDefined 与...相反 toBeUndefined
+  // toBeTruthy匹配if声明视为真的任何内容
+  // toBeFalsy匹配if语句视为false的任何内容
+
+  // test('null', () => {
+  //   const n = null;
+  //   expect(n).toBeNull();
+  //   expect(n).toBeDefined();
+  //   expect(n).not.toBeUndefined();
+  //   expect(n).not.toBeTruthy();
+  //   expect(n).toBeFalsy();
+  // });
+
+  // toBeGreaterThan 大于
+  // toBeGreaterThanOrEqual 大于或等于
+  // toBeLessThan 小于
+  // toBeLessThanOrEqual 小于或等于
+  // toEqual 整数相等
+  // toBe | toBeCloseTo 浮点数相等
+  // test('two plus two', () => {
+  //   const value = 2 + 2;
+  //   expect(value).toBeGreaterThan(3);
+  //   expect(value).toBeGreaterThanOrEqual(4);
+  //   expect(value).toBeLessThan(5);
+  //   expect(value).toBeLessThanOrEqual(4.5);
+  //   expect(value).toBe(4);
+  //   expect(value).toEqual(4);
+
+  //   const value1 = 0.11 + .22  
+  //   expect(value1).toBeCloseTo(0.33)
+  // });
+
+  // 字符串用正则检查 toMatch
+  // test('there is no I in team', () => {
+  //   expect('team').not.toMatch(/I/);
+  //   expect('team').toMatch(/m/);
+  // });
+
+  //数组和迭代
+  // 包含 toContain
+  // const shoppingList = [
+  //   'diapers',
+  //   'kleenex',
+  //   'trash bags',
+  //   'paper towels',
+  //   'beer',
+  // ];
+
+  // test('the shopping list has beer on it', () => {
+  //   expect(shoppingList).toContain('beer');
+  //   expect(new Set(shoppingList)).toContain('beer');
+  //   expect(testError).toThrow('gdfgdfgdfg'); //用法不对
+
+  // });
+
+  // // ---------------未解决-------------- 貌似理解
+  // // toThrow 抛出错误 
+  // function testError(){
+  //   throw ErrorConfig('this is test error')
+  // }
+
+  // function ErrorConfig(str:string):any{
+  //   return new Error(str)
+  // }
+
+  // function fetchData(callback:Function):void {
+  //   setTimeout(function(){
+  //     callback()
+  //   },2000)
+  // }
+  // // 异步测试
+  // test('the data is peanut butter', done => {
+  //   function callback() {
+  //     done();
+  //   }
+
+  //   fetchData(callback);
+  // });
+
+  //Promise
+  // function fetchData(){
+  //   return new Promise((resolves,reject) =>{
+  //     resolves('peanut butter')
+  //   })
+  // }
+  // test('the data is peanut butter', () => {
+  //   return fetchData().then(data => {
+  //     expect(data).toBe('peanut butter');
+  //   });
+  // });
+
+  // // async await
+  // function fetchData(callback:Function):void {
+  //   setTimeout(function(){
+  //     callback('peanut butter')
+  //   },2000)
+  // }
+  // // 异步测试
+  // test('the data is peanut butter', async () => {
+  //   await fetchData((data:string)=>{
+  //     expect(data).toBe('peanut butter');
+  //   })
+  // });
+
+  // 重复测试（类似钩子函数）
+  // function initializeCityDatabase(){
+  //   console.log('测试之前')
+  // }
+
+  // function clearCityDatabase(){
+  //   console.log('测试之后')
+  // }
+
+
+  // beforeEach(() => {
+  //   initializeCityDatabase();
+  // });
+
+  // afterEach(() => {
+  //   clearCityDatabase();
+  // });
+
+  // test('city database has San Juan', () => {
+  //   expect('San Juan').toBe('San Juan');
+  // });
+
+  //mock
+  // function forEach(items:[number,number], callback:Function) {
+  //   for (let index = 0; index < items.length; index++) {
+  //     callback(items[index]);
+  //   }
+  // }
+  // const mockCallback = jest.fn( x => 10 + x)
+  // forEach([0,1], mockCallback)
+  // test('mockCallback.Use', () =>{
+  //   console.log(mockCallback.mock.calls)
+  //   expect(mockCallback.mock.calls.length).toBe(2);
+  //   expect(mockCallback.mock.calls[0][0]).toBe(0);
+  //   expect(mockCallback.mock.calls[1][0]).toBe(1);
+  //   expect(mockCallback.mock.results[1].value).toBe(11);
+  // })
+
+  //.mock属性
+  //改属性是函数返回的数据，并且会追踪this
+  // const myMock = jest.fn()
+  // const a = new myMock()
+  // const b = {}
+  // const bound = myMock.bind(b)
+  // bound()
+
+  // console.log(myMock.mock.instances)
+  // console.log(myMock.mock.calls)
+
+  // test('.mock属性', () =>{
+  //   expect(myMock.mock.calls.length).toBe(2);
+  //   expect(myMock.mock.calls[0][0]).toBe(undefined);
+  //   expect(myMock.mock.calls[0][1]).toBe(undefined);
+  //   expect(myMock.mock.results[0].value).toBe(undefined);
+  //   expect(myMock.mock.instances.length).toBe(2);
+  //   // expect(myMock.mock.instances[0].name).toEqual();
+  // })
+
+  //模拟函数
+  // 1
+  // const myMock = jest.fn()
+  // console.log(myMock(),9999999999999)
+
+  // myMock
+  // .mockReturnValueOnce(10)
+  // .mockReturnValueOnce('x')
+  // .mockReturnValue(true)
+
+  // console.log(myMock(), myMock(), myMock(), myMock(), myMock());
+
+  // 2
+  // const filterTestFn = jest.fn()
+  // filterTestFn.mockReturnValueOnce(true).mockReturnValueOnce(false);
+  // const result = [11, 12].filter(filterTestFn);
+  // console.log(result)
+  // console.log(filterTestFn.mock.calls)
+
+  //模拟模块
+
+
+});
+
+// //// 创建一个扩展的 `Vue` 构造函数
+// const localVue = createLocalVue()
+
+// // 正常安装插件
+// localVue.use(MyPlugin)
+
+// // 在挂载选项中传入 `localVue`
+// mount(dashboard, {
+//   localVue
+// })

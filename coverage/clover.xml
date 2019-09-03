@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<coverage generated="1567420514205" clover="3.2.0">
+  <project timestamp="1567420514205" name="All files">
+    <metrics statements="28" coveredstatements="16" conditionals="4" coveredconditionals="1" methods="15" coveredmethods="6" elements="47" coveredelements="23" complexity="0" loc="28" ncloc="28" packages="2" files="2" classes="2">
+      <package name="components">
+        <metrics statements="6" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="5" coveredmethods="0"/>
+        <file name="messageLog.vue" path="D:\zyr\work\task\demo1\src\components\messageLog.vue">
+          <metrics statements="6" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="5" coveredmethods="0"/>
+          <line num="12" count="1" type="stmt"/>
+          <line num="15" count="2" type="stmt"/>
+          <line num="17" count="0" type="stmt"/>
+          <line num="21" count="0" type="stmt"/>
+          <line num="27" count="0" type="stmt"/>
+          <line num="33" count="0" type="stmt"/>
+        </file>
+      </package>
+      <package name="views">
+        <metrics statements="22" coveredstatements="14" conditionals="4" coveredconditionals="1" methods="10" coveredmethods="6"/>
+        <file name="dashboard.vue" path="D:\zyr\work\task\demo1\src\views\dashboard.vue">
+          <metrics statements="22" coveredstatements="14" conditionals="4" coveredconditionals="1" methods="10" coveredmethods="6"/>
+          <line num="20" count="1" type="stmt"/>
+          <line num="21" count="1" type="stmt"/>
+          <line num="37" count="1" type="stmt"/>
+          <line num="38" count="1" type="stmt"/>
+          <line num="40" count="10" type="stmt"/>
+          <line num="42" count="10" type="stmt"/>
+          <line num="45" count="1" type="stmt"/>
+          <line num="46" count="20" type="cond" truecount="1" falsecount="1"/>
+          <line num="47" count="0" type="stmt"/>
+          <line num="48" count="0" type="stmt"/>
+          <line num="49" count="0" type="stmt"/>
+          <line num="53" count="0" type="stmt"/>
+          <line num="54" count="0" type="cond" truecount="0" falsecount="2"/>
+          <line num="55" count="0" type="stmt"/>
+          <line num="61" count="0" type="stmt"/>
+          <line num="82" count="10" type="stmt"/>
+          <line num="83" count="10" type="stmt"/>
+          <line num="87" count="1" type="stmt"/>
+          <line num="90" count="3" type="stmt"/>
+          <line num="93" count="1" type="stmt"/>
+          <line num="97" count="10" type="stmt"/>
+          <line num="101" count="0" type="stmt"/>
+        </file>
+      </package>
+    </metrics>
+  </project>
+</coverage>
