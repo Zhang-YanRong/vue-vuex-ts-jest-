@@ -1,7 +1,6 @@
 import mutations from '@/store/mutations.ts'
 import { RootStateTypes } from '@/store/type'
 
-
 interface Data {
     data: {
         name: string;

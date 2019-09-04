@@ -173,7 +173,11 @@ describe('dashboard.vue', () => {
 describe('dashboard-computed-test', () => {
     let getters;
     let store;
+    let mutations;
     it('dashboard-datas-大于0小于5', () => {
+        mutations = {
+            ADD_MESSAGE: jest.fn()
+        }
         getters = {
             getData: jest.fn(
                 () => {
@@ -194,7 +198,7 @@ describe('dashboard-computed-test', () => {
                 message: [],
             },
             getters,
-
+            mutations,
         })
 
         const wrapper = shallowMount(dashboard, {
@@ -208,6 +212,9 @@ describe('dashboard-computed-test', () => {
     })
 
     it('dashboard-datas-等于0', () => {
+        mutations = {
+            ADD_MESSAGE: jest.fn()
+        }
         getters = {
             getData: jest.fn(
                 () => {
@@ -225,7 +232,7 @@ describe('dashboard-computed-test', () => {
                 message: [],
             },
             getters,
-
+            mutations,
         })
 
         const wrapper = shallowMount(dashboard, {
@@ -239,6 +246,9 @@ describe('dashboard-computed-test', () => {
     })
 
     it('dashboard-datas-大于5', () => {
+        mutations = {
+            ADD_MESSAGE: jest.fn()
+        }
         getters = {
             getData: jest.fn(
                 () => {
@@ -272,7 +282,7 @@ describe('dashboard-computed-test', () => {
                 message: [],
             },
             getters,
-
+            mutations,
         })
 
         const wrapper = shallowMount(dashboard, {
@@ -286,6 +296,9 @@ describe('dashboard-computed-test', () => {
     })
 
     it('dashboard-datas-大于5', () => {
+        mutations = {
+            ADD_MESSAGE: jest.fn()
+        }
         getters = {
             getData: jest.fn(
                 () => {
@@ -300,7 +313,7 @@ describe('dashboard-computed-test', () => {
                 message: [],
             },
             getters,
-
+            mutations,
         })
 
         const wrapper = shallowMount(dashboard, {

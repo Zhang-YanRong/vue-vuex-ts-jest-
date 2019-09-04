@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1567506390021" clover="3.2.0">
-  <project timestamp="1567506390021" name="All files">
-    <metrics statements="86" coveredstatements="86" conditionals="16" coveredconditionals="16" methods="31" coveredmethods="31" elements="133" coveredelements="133" complexity="0" loc="86" ncloc="86" packages="3" files="10" classes="10">
+<coverage generated="1567562319484" clover="3.2.0">
+  <project timestamp="1567562319484" name="All files">
+    <metrics statements="86" coveredstatements="84" conditionals="16" coveredconditionals="16" methods="31" coveredmethods="31" elements="133" coveredelements="131" complexity="0" loc="86" ncloc="86" packages="3" files="10" classes="10">
       <package name="components">
         <metrics statements="4" coveredstatements="4" conditionals="0" coveredconditionals="0" methods="3" coveredmethods="3"/>
         <file name="messageLog.vue" path="D:\zyr\work\task\demo1\src\components\messageLog.vue">
@@ -13,7 +13,7 @@
         </file>
       </package>
       <package name="store">
-        <metrics statements="32" coveredstatements="32" conditionals="4" coveredconditionals="4" methods="3" coveredmethods="3"/>
+        <metrics statements="32" coveredstatements="30" conditionals="4" coveredconditionals="4" methods="3" coveredmethods="3"/>
         <file name="actions.ts" path="D:\zyr\work\task\demo1\src\store\actions.ts">
           <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
           <line num="5" count="2" type="stmt"/>
@@ -36,7 +36,7 @@
           <line num="10" count="2" type="stmt"/>
         </file>
         <file name="mutations.ts" path="D:\zyr\work\task\demo1\src\store\mutations.ts">
-          <metrics statements="19" coveredstatements="19" conditionals="4" coveredconditionals="4" methods="1" coveredmethods="1"/>
+          <metrics statements="19" coveredstatements="17" conditionals="4" coveredconditionals="4" methods="1" coveredmethods="1"/>
           <line num="4" count="2" type="stmt"/>
           <line num="6" count="2" type="stmt"/>
           <line num="8" count="2" type="stmt"/>
@@ -50,8 +50,8 @@
           <line num="20" count="2" type="stmt"/>
           <line num="24" count="1" type="stmt"/>
           <line num="25" count="1" type="stmt"/>
-          <line num="29" count="1" type="stmt"/>
-          <line num="30" count="1" type="stmt"/>
+          <line num="29" count="0" type="stmt"/>
+          <line num="30" count="0" type="stmt"/>
           <line num="34" count="1" type="stmt"/>
           <line num="38" count="2" type="stmt"/>
           <line num="39" count="2" type="cond" truecount="2" falsecount="0"/>

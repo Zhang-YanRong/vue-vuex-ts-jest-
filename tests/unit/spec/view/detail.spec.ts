@@ -104,7 +104,11 @@ describe('detail.vue', () => {
     let $route: any;
     let getters: any;
     let store: any;
+    let mutations: any;
     it('computed-getData-从store获取null', () => {
+        mutations = {
+            ADD_MESSAGE: jest.fn()
+        }
         getters = {
             getData: jest.fn(() => {
                 return null
@@ -116,6 +120,7 @@ describe('detail.vue', () => {
                 message: []
             },
             getters,
+            mutations,
         })
 
         $router = {

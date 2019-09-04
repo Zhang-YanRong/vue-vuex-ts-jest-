@@ -14,6 +14,7 @@ describe('heroes.vue', () => {
         mutations = {
             ADD_HERO: jest.fn(),
             DELETE_HERO: jest.fn(),
+            ADD_MESSAGE: jest.fn(),
         }
 
         getters = {
